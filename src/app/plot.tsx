@@ -120,9 +120,11 @@ export const Component = ({
 
   useEffect(() => {
     if(mode == "MANUAL") return;
-    const fix = Math.sqrt(Math.abs(error * 0.1)) * Math.sign(-error);
+    const fix = Math.sqrt(error * error) * (-Math.sign(error) * (Math.pow(errorTolerance, 2.71))/15);
+    console.log(2.718^2)
     handleAutoFixFlow(fix);
-  }, [error, mode]);
+   
+  }, [error, mode, errorTolerance]);
 
   return (
     <>
@@ -142,7 +144,7 @@ export const Component = ({
             <motion.div
               initial={{ translateX: "-50%", translateY: "50%" }}
               animate={{
-                rotate: flow * 15,
+                rotate: flow * 20,
               }}
               transition={{ type: "spring" }}
               className="w-3 h-3 left-1/2  -top-1/3 bg-red-300 absolute"
@@ -173,7 +175,7 @@ export const Component = ({
             N. Tanque: {height} cm
           </div>
           <div className="top-[4.25rem] text-black ">
-            N. caudal: {flow}
+            N. caudal: {flow} l/s
           </div>
           <div className="top-[6.25rem] text-black ">
             N. error: {error} cm
@@ -202,9 +204,9 @@ export const Component = ({
               {
                 "border-green-600": Math.abs(error) < errorTolerance,
                 "border-yellow-400":
-                  Math.sign(error) == errorTolerance && !(Math.abs(error) < errorTolerance),
+                  Math.sign(error) == 1 && !(Math.abs(error) < errorTolerance),
                 "border-red-700":
-                  Math.sign(error) == -errorTolerance && !(Math.abs(error) < errorTolerance),
+                  Math.sign(error) == -1 && !(Math.abs(error) < errorTolerance),
               }
             )}
             style={{
@@ -292,11 +294,11 @@ export const Home = () => {
                 <div
                   className={clsx("w-6 h-6 rounded-full border-2 border-gray-500 shadow-black/50 shadow-inner" ,
                     {
-                      "bg-green-400": Math.abs(error) < 1,
+                      "bg-green-400": Math.abs(error) < errorTolerance,
                       "bg-yellow-400":
-                        Math.sign(error) == errorTolerance && !(Math.abs(error) < errorTolerance),
+                        Math.sign(error) == 1 && !(Math.abs(error) < errorTolerance),
                       "bg-red-400":
-                        Math.sign(error) == -errorTolerance && !(Math.abs(error) < errorTolerance),
+                        Math.sign(error) == -1 && !(Math.abs(error) < errorTolerance),
                     }
                   )}
                 />
@@ -304,10 +306,10 @@ export const Home = () => {
                 {Math.abs(error) < errorTolerance && (
                   "Nivelado"
                 )}
-                { Math.sign(error) == errorTolerance && !(Math.abs(error) < errorTolerance)&& (
+                { Math.sign(error) == 1 && !(Math.abs(error) < errorTolerance)&& (
                   "Falta de Agua"
                 )}
-                {Math.sign(error) == -errorTolerance && !(Math.abs(error) < errorTolerance) && (
+                {Math.sign(error) == -1 && !(Math.abs(error) < errorTolerance) && (
                   "Exceso de Agua"
                 )}
                 </div>
@@ -332,8 +334,8 @@ export const Home = () => {
             </div>
             <div className="mt-2">
               <div className="font-bold">Nivel de agua Deseado</div>
-              <div className="flex w-full items-center gap-5">
-                <div>0</div>
+              <div className="flex w-full items-center gap-2">
+                <div className="w-20">0cm</div>
                 <input
                   className="bg-red-200 w-full"
                   type="range"
@@ -342,17 +344,17 @@ export const Home = () => {
                   }}
                   min={0}
                   value={level}
-                  max={120}
+                  max={135}
                   step={0.1}
                 />
-                <div>12</div>
+                <div className="w-20">135cm</div>
                 <div className="bg-black font-mono w-32 rounded-md px-2 py-1">{level}</div>
               </div>
             </div>
             <div>
-              <div className="font-bold">Nivel Nivel del caudal</div>
-              <div className="flex w-full items-center gap-5">
-                <div>0</div>
+              <div className="font-bold">Nivel del caudal</div>
+              <div className="flex w-full items-center gap-2">
+                <div className="w-20">0 l/s</div>
                 <input
                   disabled={mode == "AUTO"}
                   className="bg-red-200 w-full"
@@ -365,26 +367,26 @@ export const Home = () => {
                   max={MAX_CAUDAL}
                   step={0.1}
                 />
-                <div>12</div>
+                <div className="w-20">12 l/s</div>
                 <div className="bg-black px-2 w-32 font-mono rounded-md py-1">{flow}</div>
               </div>
             </div>
             <div>
               <div className="font-bold">Tolerancia al error</div>
-              <div className="flex w-full items-center gap-5">
-                <div>0.1</div>
+              <div className="flex w-full items-center gap-2">
+                <div className="w-20">0.5</div>
                 <input
                   className="bg-red-200 w-full"
                   type="range"
                   onChange={(v) => {
                     setErrorTolerance(Number(v.target.value) ?? 0);
                   }}
-                  min={0.1}
+                  min={0.5}
                   value={errorTolerance}
                   max={2}
                   step={0.1}
                 />
-                <div>2</div>
+                <div className="w-20">2</div>
                 <div className="bg-black px-2 w-32 font-mono rounded-md py-1">{errorTolerance}</div>
               </div>
             </div>
