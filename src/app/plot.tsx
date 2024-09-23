@@ -15,10 +15,13 @@ import {
   ReferenceLine,
 } from "recharts";
 
-const ode = (h: number, flow: number, flowExit: number, tiempo: number) => {
-  const dhdt = (1 / 2) * (flow * 0.5 - flowExit * 0.042 * Math.sqrt(h));
-  h = Math.max(0, h + tiempo * dhdt);
-  return h;
+const ode = (height: number, flow: number, flowExit: number, tiempo: number) => {
+  const accelerationExit = 0.5
+  const accelerationEnter = 0.042
+
+  const dhdt = (1 / 2) * (flow * accelerationExit - flowExit * accelerationEnter * Math.sqrt(height));
+  height = Math.max(0, height + tiempo * dhdt);
+  return height;
 };
 
 const Plot = ({
