@@ -20,11 +20,14 @@ k22a2 es la cantidad de agua que sale por la aceleracion del agua de salida
 
 Raiz de 2gh es la cantidad de raiz cuadrada del nivel del tanque por la gravedad.
 
-La formula anterior resta lo que entra con lo que sale, dando una diferencia, pero la cantidad de agua que sale va en funcion de la altura. Es decir, mientras que la cantidad de agua que entra es constante, el agua que sale, aunque podria ser un valor fijo, se verá afectada por la altura.
+La formula anterior resta lo que entra con lo que sale, dando una diferencia, pero la cantidad de 
+agua que sale va en funcion de la altura. Es decir, mientras que la cantidad de agua que entra es 
+constante, el agua que sale, aunque podria ser un valor fijo, se verá afectada por la altura.
 
 A mayor cantidad de agua, aumenta ligeramente la cantidad de agua que sale.
 
-Esta ecuacion diferencial esta representada en el codigo de la siguiente forma. Unicamente no se esta considerando la 2 * gravedad en la version actual para regular el comportamient o la velocidad del tanque.
+Esta ecuacion diferencial esta representada en el codigo de la siguiente forma. Unicamente no se 
+esta considerando la 2 * gravedad en la version actual para regular el comportamient o la velocidad del tanque.
 
 ```typescript
 
@@ -46,14 +49,16 @@ El proyecto usa React y Next js, y esta desplegado en Vercel.
 
 - **React**: Es un framework/libreria que se utiliza para la creacion de interfaces graficas en la web. Esta libreria permite crear aplicaciones y reutilizar codigo de una forma mas sencilla antes que usar lo que se conoce como Vanilla Javascript (Programacion en Javascript sin herramientas)
 
-- **Next JS**: Es un framework de React que se utiliza para solucionar muchos problemas de React respecto al SEO de paginas web. Ademas de eso, agrega muchas modulos nuevos que facilitan la creacion de paginas interactivas. Cabe recalcar que aunque el proyecto use Next JS, el hecho de usar esta herramienta fue unicamente para poder generar la plantilla del proyecto y subirla rapidamente a Vercel.
+- **Next JS**: Es un framework de React que se utiliza para solucionar muchos problemas de Reactrespecto al SEO de paginas web. Ademas de eso, agrega muchas modulos nuevos que facilitan la   creacion de paginas interactivas. Cabe recalcar que aunque el proyecto use Next JS, el hecho de usar esta herramienta fue unicamente para poder generar la plantilla del proyecto y subirla rapidamente a Vercel.
 
--  **Vercel**: Es un servicio de alojamiento en internet el cual permite subir paginas de forma rapida y gratuita cuando los proyectos estan en desarrollo. Ademas de eso, tambien los desarrolladores de multiples herramientas de desarrollo como NextJs, Turbopack y el design system de geist.
+-  **Vercel**: Es un servicio de alojamiento en internet el cual permite subir paginas de forma  apida y gratuita cuando los proyectos estan en desarrollo. Ademas de eso, tambien los  desarrolladores de multiples herramientas de desarrollo como NextJs, Turbopack y el design system de geist.
 
-Ademas de las herramientas mencionadas anteriormente, para facilitar el desarrollo del proyecto y no reinventar la rueda, se usaron tres librerias propias de React para poder correr el proyecto, typescript y un framework de css.. 
+Ademas de las herramientas mencionadas anteriormente, para facilitar el desarrollo del proyecto y 
+no reinventar la rueda, se usaron tres librerias propias de React para poder correr el proyecto, typescript y un framework de css.. 
 
 
-- **Tailwind**: es un framework para estilizar rapido. Para los que tengan conocimientos en css, si quieres ponerle a un div los bordes redondos, un ancho y alto de 20 px y un color rojo se haria asi
+- **Tailwind**: es un framework para estilizar rapido. Para los que tengan conocimientos en css,
+si quieres ponerle a un div los bordes redondos, un ancho y alto de 20 px y un color rojo se haria asi
 
 ```html
     <div class="my-div">
@@ -76,7 +81,8 @@ en react con tailwind seria asi:
     <div className="bg-red-200 w-5 h-5 rounded-xl" />
 ```
 
-En lugar de declarar una clase con estilos, habran mil clases ya hechas ( con el tiempo se aprenden ) que representan estilos de css. Por ejmplo, el w-5, signigica width de 20 px. w-6 significa 24px, w-7 son 28px y w-8 son 32px.
+En lugar de declarar una clase con estilos, habran mil clases ya hechas ( con el tiempo se aprenden ) 
+que representan estilos de css. Por ejmplo, el w-5, signigica width de 20 px. w-6 significa 24px, w-7 son 28px y w-8 son 32px.
 
 Esto facilita mucho el trabajo. 
 
@@ -146,10 +152,14 @@ const ode = (height: number, flow: number, flowExit: number, tiempo: number) => 
     return height;
 };
 
-// Este framegmento de codigo usa una funcion de framer motion llamada useAnimationFrame. Esta funcion de Framer Motion usa una api interna que tienen los navegadores que permiten ejecutar codigo en cada frame o renderizado. Si una pantalla se renderiza 30-60 veces por segundo, esta funcion calcula la altura unas 30 0 60 veces por segundo.  
+// Este framegmento de codigo usa una funcion de framer motion llamada useAnimationFrame.
+ Esta funcion de Framer Motion usa una api interna que tienen los navegadores que permiten
+ejecutar codigo en cada frame o renderizado. Si una pantalla se renderiza 30-60 veces por segundo,
+esta funcion calcula la altura unas 30 0 60 veces por segundo.  
 
 // el Time es el tiempo que ha ocurrido desde que se inica e ejecutar la funcion
-// el delta es la diferencia expresada en milisegundos de cuando fue la ultima vez que se ejecuto la funcion. Si un frame se ejecuto en el milisegundo 1000 y el siguiente en el 1030. el delta es 30.
+// el delta es la diferencia expresada en milisegundos de cuando fue la ultima vez que se ejecuto
+la funcion. Si un frame se ejecuto en el milisegundo 1000 y el siguiente en el 1030. el delta es 30.
 
 useAnimationFrame((time, delta) => {
     
@@ -157,8 +167,10 @@ useAnimationFrame((time, delta) => {
     // - Se le pasa la altura actual del tanque. 
     // - El nivel de salida del agua en el caudal inferioir flowExit.
     // - El nivel de entrada del aguae en el caudal superior.
-    // - El delta es el tiempo. Se ajusto entre 100, porque al ser milisegundos, tener 1 segundo representado como 1000 afecta considerablemente a la velocidad del tanque.
-    // El Math.round( resultdo * round ) / 1000 es para solo mostrar los tres ultimos decimales de la altura. Esto se repite en varias partes para ajustar los montos decimales.
+    // - El delta es el tiempo. Se ajusto entre 100, porque al ser milisegundos, tener 1
+    segundo representado como 1000 afecta considerablemente a la velocidad del tanque.
+    // El Math.round( resultdo * round ) / 1000 es para solo mostrar los tres ultimos
+    decimales de la altura. Esto se repite en varias partes para ajustar los montos decimales.
     const newHeight =
       Math.round(ode(height, flow, flowExit, delta / 100) * 1000) / 1000;
     const newTime = Math.floor(time / 1000);
@@ -166,23 +178,31 @@ useAnimationFrame((time, delta) => {
     // Luego de calcualar la nueva altura, se le dice al sistema que esta es la nueva altura
     setHeight(newHeight);
 
-     // Esto verifica si existe Desborde. Si no hay Desborde, se verifica si el agua es mayor a 145 centimetros. Si lo sobrepasa, se activa el desborde
+     // Esto verifica si existe Desborde. Si no hay Desborde, se verifica si el agua es mayor a
+    145 centimetros. Si lo sobrepasa, se activa el desborde
     if(!overflow){
       handleSetOverflow(newHeight > 145);
     }
 
-    // Caso contrario, esto verifica si existe Desborde. Si existe Desborde, se verifica si el agua es mayor a 80 centimentros, caso contrario se desactiva el modo de desborde. Ocurre que en el modo de desborde, el tanque se vacia lentamente, es por ello que pasado unos segundod, el bajara por debajo de 80 para desactivar esta medida preventiva.
+    // Caso contrario, esto verifica si existe Desborde. Si existe Desborde, se verifica si el
+    agua es mayor a 80 centimentros, caso contrario se desactiva el modo de desborde. Ocurre que
+    en el modo de desborde, el tanque se vacia lentamente, es por ello que pasado unos segundod,
+     el bajara por debajo de 80 para desactivar esta medida preventiva.
     if(overflow){
       handleSetOverflow(newHeight > 80);
     }
 
-    // Esto cacula el error y la grafica, el currentTime es el tiempo que ha pasado actualmente en segundos. Y el newTime, es el nuevo tiempo en un nuevo frame. Si han pasado 40 segundos y actualmente son 41, esto se calcula. 
+    // Esto cacula el error y la grafica, el currentTime es el tiempo que ha pasado actualmente
+    en segundos. Y el newTime, es el nuevo tiempo en un nuevo frame. Si han pasado 40 segundos y
+    actualmente son 41, esto se calcula. 
 
     if (currentTime < newTime) {
-        // En la grafica se necesita un arreglo de pares como si fueran de un plano cartesiano. h seria Y y t seria X. A medida que pasa el tiempo, la grafica va redibujando la grafica con los nuevos pares.
+        // En la grafica se necesita un arreglo de pares como si fueran de un plano cartesiano.
+     h seria Y y t seria X. A medida que pasa el tiempo, la grafica va redibujando la grafica con los nuevos pares.
       const newPlot = { h: newHeight, t: newTime };
 
-      //Esto calcula el error, es unicamente el nivel deseado - la nueva altura. Si tu quieres que el nivel sea 90 y esta en 20 el nivel. El error es de 70. 
+      //Esto calcula el error, es unicamente el nivel deseado - la nueva altura. Si tu quieres
+    que el nivel sea 90 y esta en 20 el nivel. El error es de 70. 
       // Nuevamente el math around es para reondear. Si el monto es 3.1351231, daria 3.135
       const error = Math.round((level - newHeight) * 1000) / 1000;
       /// se agregan los datos anterioir y se agrega el nuevo.
@@ -262,7 +282,9 @@ const Plot = ({
           bottom: 30,
         }}
       >
-        {/* Esta parte de domain es el tiempo, como el grafico solo muestra intervalos de 20 segundos, se debe cambiar el dominio costantemente para que no se muestre el grafico del segundo 0 al segundo 400. Si llega a 20, le siguiente dominio es [1, 21], luego [2, 22], luego [3, 23] y asi, para no romper el grafico  */}
+        {/* Esta parte de domain es el tiempo, como el grafico solo muestra intervalos de 20 segundos,
+    se debe cambiar el dominio costantemente para que no se muestre el grafico del segundo 0 al segundo
+    400. Si llega a 20, le siguiente dominio es [1, 21], luego [2, 22], luego [3, 23] y asi, para no romper el grafico  */}
         <XAxis
           unit="s"
           type="number"
@@ -320,7 +342,8 @@ const Plot = ({
             // Aqui le paso estilos directos que siempre se aplican
         "w-6 h-6 rounded-full border-2 border-gray-500 shadow-black/50 shadow-inner",
         
-        // Aqui lo hago con un objeto, es como un dict en python de key: value. En el value hay una condicion, si es True se renderiza el estilo que es la Key.
+        // Aqui lo hago con un objeto, es como un dict en python de key: value. En el value hay una
+     condicion, si es True se renderiza el estilo que es la Key.
         {
             "bg-green-400":
             Math.abs(error) < errorTolerance && !overflow,
