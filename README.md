@@ -1,4 +1,4 @@
-# Simulador de Sistema de Nivelaxcion
+# Simulador de Sistema de Nivelación
 
 El proyecto que se presenta a continuacion es un sistema de control aplicado a un tanque de agua en donde se busca controlar el nivel del agua del tanque. Es una app desarrollada en React, que permite regular los niveles de entrada y de salida de un tanque de agua, asi como activar un modo de auto regulacion en donde el mismo tanque busca ajustarse para hallar el equilibrio.
 
