@@ -212,7 +212,7 @@ Asimismo, framer motion tambien esta en el giro de las llaves de paso. Esta libr
     className="w-3 h-3 left-3/4  -top-1/3 bg-red-300 absolute"
     >
 
-    {/* resto de la perilla Perilla */}
+    {/* resto del codigo de la llave de paso */}
 </motion.div>
 
 
