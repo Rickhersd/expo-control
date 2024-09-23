@@ -4,11 +4,11 @@ El proyecto que se presenta a continuacion es un sistema de control aplicado a u
 
 El equilibro consiste en que la misma cantidad de agua que sale, es la misma que la entra, impidiendo que el agua suba o baje.
 
-## Funcioamiento del tanque
+## Funcioanamiento del tanque
 
-El tanque basicamente toma el nivel actual de tanque y cuanta agua deberia entrar y deberia salir para ir calcular la diferencia en funcion del tiempo. Es decir. 
+El tanque basicamente toma el nivel actual de tanque y cuanta agua deberia entrar y deberia salir para calcular la diferencia en funcion del tiempo. Es decir. 
 
-Si pasan 2 segundos, la formula responde cuanto tiene de mas o tiene menos el tanque en esos dos segundos.
+Si pasan 2 segundos, la formula responde cuanto tiene de mas o menos el tanque en esos dos segundos.
 
 Para ello, una ecuacion que calcula esto es la siguiente
 
@@ -20,7 +20,7 @@ k22a2 es la cantidad de agua que sale por la aceleracion del agua de salida
 
 Raiz de 2gh es la cantidad de raiz cuadrada del nivel del tanque por la gravedad.
 
-La formula anterior resta lo que entra con lo que sale, dando una diferencia, pero la cantidad de agua que sale va en funcion de la altura. Es decir, mientras que la cantidad de agua que entra es constante, el agua que sale aunque podria ser un valor fijo se vera afectada por la altura.
+La formula anterior resta lo que entra con lo que sale, dando una diferencia, pero la cantidad de agua que sale va en funcion de la altura. Es decir, mientras que la cantidad de agua que entra es constante, el agua que sale, aunque podria ser un valor fijo, se verá afectada por la altura.
 
 A mayor cantidad de agua, aumenta ligeramente la cantidad de agua que sale.
 
@@ -48,12 +48,12 @@ El proyecto usa React y Next js, y esta desplegado en Vercel.
 
 - **Next JS**: Es un framework de React que se utiliza para solucionar muchos problemas de React respecto al SEO de paginas web. Ademas de eso, agrega muchas modulos nuevos que facilitan la creacion de paginas interactivas. Cabe recalcar que aunque el proyecto use Next JS, el hecho de usar esta herramienta fue unicamente para poder generar la plantilla del proyecto y subirla rapidamente a Vercel.
 
--  **Vercel**: Es un servicio de alojamiento en internent el cual permite subir paginas de forma rapida y gratuita cuando los proyectos estan en desarrollo. Ademas de eso, tambien los desarrolladores de multiples herramientas de desarrollo como NextJs, Turbopack y el design system de geist.
+-  **Vercel**: Es un servicio de alojamiento en internet el cual permite subir paginas de forma rapida y gratuita cuando los proyectos estan en desarrollo. Ademas de eso, tambien los desarrolladores de multiples herramientas de desarrollo como NextJs, Turbopack y el design system de geist.
 
 Ademas de las herramientas mencionadas anteriormente, para facilitar el desarrollo del proyecto y no reinventar la rueda, se usaron tres librerias propias de React para poder correr el proyecto, typescript y un framework de css.. 
 
 
-- **Tailwind**: es un framework par estilizar rapido. Para los que tengan conocimientos en css, si quieres ponerle a un div los bordes redondos, un ancho y alto de 20 px y un color rojo se haria asi
+- **Tailwind**: es un framework para estilizar rapido. Para los que tengan conocimientos en css, si quieres ponerle a un div los bordes redondos, un ancho y alto de 20 px y un color rojo se haria asi
 
 ```html
     <div class="my-div">
