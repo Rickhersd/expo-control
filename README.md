@@ -4,7 +4,7 @@ El proyecto que se presenta a continuacion es un sistema de control aplicado a u
 
 El equilibro consiste en que la misma cantidad de agua que sale, es la misma que la entra, impidiendo que el agua suba o baje.
 
-## Funcioanamiento del tanque
+## Funcionamiento del tanque
 
 El tanque basicamente toma el nivel actual de tanque y cuanta agua deberia entrar y deberia salir para calcular la diferencia en funcion del tiempo. Es decir. 
 
@@ -153,13 +153,13 @@ const ode = (height: number, flow: number, flowExit: number, tiempo: number) => 
 };
 
 // Este framegmento de codigo usa una funcion de framer motion llamada useAnimationFrame.
- Esta funcion de Framer Motion usa una api interna que tienen los navegadores que permiten
-ejecutar codigo en cada frame o renderizado. Si una pantalla se renderiza 30-60 veces por segundo,
-esta funcion calcula la altura unas 30 0 60 veces por segundo.  
+// Esta funcion de Framer Motion usa una api interna que tienen los navegadores que permiten
+// ejecutar codigo en cada frame o renderizado. Si una pantalla se renderiza 30-60 veces por segundo,
+// esta funcion calcula la altura unas 30 0 60 veces por segundo.  
 
 // el Time es el tiempo que ha ocurrido desde que se inica e ejecutar la funcion
 // el delta es la diferencia expresada en milisegundos de cuando fue la ultima vez que se ejecuto
-la funcion. Si un frame se ejecuto en el milisegundo 1000 y el siguiente en el 1030. el delta es 30.
+// la funcion. Si un frame se ejecuto en el milisegundo 1000 y el siguiente en el 1030. el delta es 30.
 
 useAnimationFrame((time, delta) => {
     
@@ -168,9 +168,9 @@ useAnimationFrame((time, delta) => {
     // - El nivel de salida del agua en el caudal inferioir flowExit.
     // - El nivel de entrada del aguae en el caudal superior.
     // - El delta es el tiempo. Se ajusto entre 100, porque al ser milisegundos, tener 1
-    segundo representado como 1000 afecta considerablemente a la velocidad del tanque.
+    // segundo representado como 1000 afecta considerablemente a la velocidad del tanque.
     // El Math.round( resultdo * round ) / 1000 es para solo mostrar los tres ultimos
-    decimales de la altura. Esto se repite en varias partes para ajustar los montos decimales.
+    // decimales de la altura. Esto se repite en varias partes para ajustar los montos decimales.
     const newHeight =
       Math.round(ode(height, flow, flowExit, delta / 100) * 1000) / 1000;
     const newTime = Math.floor(time / 1000);
@@ -179,30 +179,30 @@ useAnimationFrame((time, delta) => {
     setHeight(newHeight);
 
      // Esto verifica si existe Desborde. Si no hay Desborde, se verifica si el agua es mayor a
-    145 centimetros. Si lo sobrepasa, se activa el desborde
+    // 145 centimetros. Si lo sobrepasa, se activa el desborde
     if(!overflow){
       handleSetOverflow(newHeight > 145);
     }
 
     // Caso contrario, esto verifica si existe Desborde. Si existe Desborde, se verifica si el
-    agua es mayor a 80 centimentros, caso contrario se desactiva el modo de desborde. Ocurre que
-    en el modo de desborde, el tanque se vacia lentamente, es por ello que pasado unos segundod,
-     el bajara por debajo de 80 para desactivar esta medida preventiva.
+    // agua es mayor a 80 centimentros, caso contrario se desactiva el modo de desborde. Ocurre que
+    // en el modo de desborde, el tanque se vacia lentamente, es por ello que pasado unos segundod,
+     // el bajara por debajo de 80 para desactivar esta medida preventiva.
     if(overflow){
       handleSetOverflow(newHeight > 80);
     }
 
     // Esto cacula el error y la grafica, el currentTime es el tiempo que ha pasado actualmente
-    en segundos. Y el newTime, es el nuevo tiempo en un nuevo frame. Si han pasado 40 segundos y
-    actualmente son 41, esto se calcula. 
+    // en segundos. Y el newTime, es el nuevo tiempo en un nuevo frame. Si han pasado 40 segundos y
+    // actualmente son 41, esto se calcula. 
 
     if (currentTime < newTime) {
         // En la grafica se necesita un arreglo de pares como si fueran de un plano cartesiano.
-     h seria Y y t seria X. A medida que pasa el tiempo, la grafica va redibujando la grafica con los nuevos pares.
+     // h seria Y y t seria X. A medida que pasa el tiempo, la grafica va redibujando la grafica con los nuevos pares.
       const newPlot = { h: newHeight, t: newTime };
 
       //Esto calcula el error, es unicamente el nivel deseado - la nueva altura. Si tu quieres
-    que el nivel sea 90 y esta en 20 el nivel. El error es de 70. 
+    // que el nivel sea 90 y esta en 20 el nivel. El error es de 70. 
       // Nuevamente el math around es para reondear. Si el monto es 3.1351231, daria 3.135
       const error = Math.round((level - newHeight) * 1000) / 1000;
       /// se agregan los datos anterioir y se agrega el nuevo.
@@ -283,8 +283,8 @@ const Plot = ({
         }}
       >
         {/* Esta parte de domain es el tiempo, como el grafico solo muestra intervalos de 20 segundos,
-    se debe cambiar el dominio costantemente para que no se muestre el grafico del segundo 0 al segundo
-    400. Si llega a 20, le siguiente dominio es [1, 21], luego [2, 22], luego [3, 23] y asi, para no romper el grafico  */}
+    // se debe cambiar el dominio costantemente para que no se muestre el grafico del segundo 0 al segundo
+    // 400. Si llega a 20, le siguiente dominio es [1, 21], luego [2, 22], luego [3, 23] y asi, para no romper el grafico  */}
         <XAxis
           unit="s"
           type="number"
@@ -343,7 +343,7 @@ const Plot = ({
         "w-6 h-6 rounded-full border-2 border-gray-500 shadow-black/50 shadow-inner",
         
         // Aqui lo hago con un objeto, es como un dict en python de key: value. En el value hay una
-     condicion, si es True se renderiza el estilo que es la Key.
+     // condicion, si es True se renderiza el estilo que es la Key.
         {
             "bg-green-400":
             Math.abs(error) < errorTolerance && !overflow,
