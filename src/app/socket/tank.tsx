@@ -209,7 +209,7 @@ export const Component = ({
           >
             <div>Log:</div>
             <div>
-              Distancia: {Math.round((29 - v.distancia) * 100) / 100} cm
+              Distancia: {v.distancia} cm
             </div>
           </div>
         ))}
