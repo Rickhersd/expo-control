@@ -50,7 +50,7 @@ export const Component = ({
     divRef.current?.scrollTo(0, divRef.current?.scrollHeight);
   }, [history]);
 
-  console.log(desiredLevel)
+  console.log(desiredLevel);
 
   return (
     <>
@@ -137,13 +137,14 @@ export const Component = ({
             <div className="bg-green-600 absolute left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full" />
             <div className="bg-green-600 absolute right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full" />
             <span className="left-full  w-16 translate-x-4 -translate-y-1/2 text-zinc-800 font-bold absolute">
-              Nivel Deseado {map( Math.round(desiredLevel * 100) / 100, 7, 22, 2, 22)} cm
+              Nivel Deseado{' '}
+              {map(Math.round(desiredLevel * 100) / 100, 7, 22, 2, 22)} cm
             </span>
           </div>
           <div className="w-2 bg-gray-500 absolute rounded-br-full rounded-tr-full left-full -bottom-0 h-60" />
           <div className="w-2 h-5 bg-gray-500 absolute left-4 top-full" />
           <div className="w-2 h-5 bg-gray-500 absolute right-4 top-full" />
-          {overflow && 
+          {overflow && (
             <motion.div
               initial={{
                 translateX: '-50%',
@@ -161,7 +162,7 @@ export const Component = ({
             >
               DESBORDE
             </motion.div>
-          }
+          )}
 
           <div className="w-[20vw] max-w-40 bottom-0 left-full h-4 -translate-x-0 bg-gray-500 absolute">
             <div className="h-5 shadow-lg w-2 top-1/2 -translate-y-1/2 bg-gray-400 left-0 absolute" />
@@ -208,9 +209,7 @@ export const Component = ({
             key={i}
           >
             <div>Log:</div>
-            <div>
-              Distancia: {v.distancia} cm
-            </div>
+            <div>Distancia: {v.distancia} cm</div>
           </div>
         ))}
       </div>
@@ -273,9 +272,8 @@ export const Home = () => {
           setHeight(currentHeight);
         }
 
-        console.log(socketHeight)
+        console.log(socketHeight);
         if (newResult.niveldeseado != 29 - newResult.niveldeseado) {
-          
           const desiredHeight = 29 - newResult.niveldeseado;
           setSocketHeight(desiredHeight);
         }
@@ -284,10 +282,18 @@ export const Home = () => {
           setOverflow(Boolean(newResult.desborde));
         }
 
-        setMessageHistory((prev) => prev.concat({
-         ...newResult,
-         distancia: map(Math.round((29 - newResult.distancia) * 100) / 100, 7, 22, 2, 22)
-        }));
+        setMessageHistory((prev) =>
+          prev.concat({
+            ...newResult,
+            distancia: map(
+              Math.round((29 - newResult.distancia) * 100) / 100,
+              7,
+              22,
+              2,
+              22,
+            ),
+          }),
+        );
       } catch (e) {
         console.error(e);
       }
@@ -364,7 +370,7 @@ export const Home = () => {
                 </div>
                 <div className="ml-8">Nivel configurado:</div>
                 <div className="font-mono bg-black text-xs text-nowrap rounded-md px-2 w-32 py-1">
-                  {map(socketHeight, 0, 100, 2, 22) + " cm"}
+                  {map(socketHeight, 7, 22, 2, 22) + ' cm'}
                 </div>
               </div>
               <div className="grid grid-cols-[1fr_8rem] gap-4">
